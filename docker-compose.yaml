@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:13-alpine
+    container_name: borderblitz-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=borderblitz
+      - POSTGRES_PASSWORD=borderblitz_password
+      - POSTGRES_DB=borderless
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U borderblitz -d borderless"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: borderblitz-backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=borderblitz
+      - DB_PASSWORD=borderblitz_password
+      - DB_NAME=borderless
+      - DB_SSLMODE=disable
+      - PORT=8006xs
+      - APP_ENV=production
+    ports:
+      - "8006:8006"
+
+volumes:
+  postgres_data:
+
+
+  
