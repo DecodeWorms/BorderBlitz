@@ -2,6 +2,8 @@ package config
 
 import (
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 // Config holds all configuration for the application
@@ -25,6 +27,18 @@ func NewConfig() *Config {
 		DBName:     getEnv("DB_NAME", "borderless"),
 		AppEnv:     getEnv("APP_ENV", "development"),
 		AppPort:    getEnv("APP_PORT", "8006"),
+	}
+}
+
+// loadEnvFile loads the correct .env file based on APP_ENV
+func loadEnvFile() {
+	appEnv := os.Getenv("APP_ENV")
+
+	switch appEnv {
+	case "production":
+		_ = godotenv.Load("production.env")
+	default:
+		_ = godotenv.Load(".env") // default to local
 	}
 }
 
