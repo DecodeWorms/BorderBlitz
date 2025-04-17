@@ -182,7 +182,9 @@ func SetUpRouter(explorer *handlers.ExplorerHandler, tx *handlers.TransactionHan
 	router.Use(cors.Default())
 	// Add CORS middleware
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowOrigins: []string{"http://localhost:3000", //local
+			"https://borderblitz-frontend.onrender.com", // for prod on a Render platform .
+		},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "x-user-id"},
 		AllowCredentials: true,
