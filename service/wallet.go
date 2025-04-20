@@ -11,16 +11,16 @@ import (
 
 // WalletService handles business logic for wallets
 type WalletService struct {
-	walletRepo     *repository.WalletRepository
-	stablecoinRepo *repository.StablecoinRepository
-	user           *repository.Users
+	walletRepo     repository.Wallet
+	stableCoinRepo repository.StableCoin
+	user           repository.User
 }
 
 // NewWalletService creates a new wallet service
-func NewWalletService(walletRepo *repository.WalletRepository, stablecoinRepo *repository.StablecoinRepository, user *repository.Users) *WalletService {
+func NewWalletService(walletRepo repository.Wallet, stablecoinRepo repository.StableCoin, user repository.User) *WalletService {
 	return &WalletService{
 		walletRepo:     walletRepo,
-		stablecoinRepo: stablecoinRepo,
+		stableCoinRepo: stablecoinRepo,
 		user:           user,
 	}
 }

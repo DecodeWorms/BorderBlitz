@@ -77,7 +77,7 @@ func SetUpUserService(user *repository.Users) *services.Users {
 }
 
 // SetUpWalletService sets up Wallet service with dependencies
-func SetUpWalletService(wallet *repository.WalletRepository, stableCoin *repository.StablecoinRepository, user *repository.Users) *services.WalletService {
+func SetUpWalletService(wallet repository.Wallet, stableCoin repository.StableCoin, user repository.User) *services.WalletService {
 	return services.NewWalletService(wallet, stableCoin, user)
 }
 

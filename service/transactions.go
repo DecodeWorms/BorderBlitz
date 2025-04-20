@@ -12,18 +12,18 @@ import (
 
 // TransactionService handles business logic for transactions
 type TransactionService struct {
-	txRepo         *repository.TransactionRepository
-	walletRepo     *repository.WalletRepository
-	stablecoinRepo *repository.StablecoinRepository
+	txRepo         repository.Transaction
+	walletRepo     repository.Wallet
+	stablecoinRepo repository.StableCoin
 	db             *gorm.DB
 }
 
 // NewTransactionService creates a new transaction service
 func NewTransactionService(
 	db *gorm.DB,
-	txRepo *repository.TransactionRepository,
-	walletRepo *repository.WalletRepository,
-	stablecoinRepo *repository.StablecoinRepository,
+	txRepo repository.Transaction,
+	walletRepo repository.Wallet,
+	stablecoinRepo repository.StableCoin,
 ) *TransactionService {
 	return &TransactionService{
 		db:             db,
