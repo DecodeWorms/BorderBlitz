@@ -13,17 +13,17 @@ import (
 // SwapService handles business logic for swapping stablecoins
 type SwapService struct {
 	db             *gorm.DB
-	walletRepo     *repository.WalletRepository
-	stablecoinRepo *repository.StablecoinRepository
-	txRepo         *repository.TransactionRepository
+	walletRepo     repository.Wallet
+	stablecoinRepo repository.StableCoin
+	txRepo         repository.Transaction
 }
 
 // NewSwapService creates a new swap service
 func NewSwapService(
 	db *gorm.DB,
-	walletRepo *repository.WalletRepository,
-	stablecoinRepo *repository.StablecoinRepository,
-	txRepo *repository.TransactionRepository,
+	walletRepo repository.Wallet,
+	stablecoinRepo repository.StableCoin,
+	txRepo repository.Transaction,
 ) *SwapService {
 	return &SwapService{
 		db:             db,

@@ -37,3 +37,5 @@ func (u *Users) FindByEmail(email string) (*models.Users, error) {
 	err := u.Db.Where("email=?", email).First(&user).Error
 	return user, err
 }
+
+var _ User = &Users{}

@@ -7,10 +7,10 @@ import (
 )
 
 type Users struct {
-	user *repository.Users
+	user repository.User
 }
 
-func NewUsers(u *repository.Users) *Users {
+func NewUsers(u repository.User) *Users {
 	return &Users{
 		user: u,
 	}
