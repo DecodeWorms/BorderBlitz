@@ -93,7 +93,7 @@ kubectl apply -f k8s/
 
 v1
 
-🌍 Production Deployment on Render
+### 🧪 🌍 PRODUCTION DEPLOYMENT ON RENDER
 The backend is deployed on Render, connected to this repo.
 
 Render Setup
@@ -104,7 +104,7 @@ Render Setup
 Runtime: Go
 
 Start Command:
-./your-backend-binary
+./borderblitz
 
 Environment Variables:
 Add variables like DB_URL, PORT, etc.
